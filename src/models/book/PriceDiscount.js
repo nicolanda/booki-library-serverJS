@@ -18,7 +18,7 @@ export const PriceDiscount = sequelize.define(
       }
     },
     value: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       validate: {
         notEmpty: true,

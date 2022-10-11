@@ -5,7 +5,7 @@ import {
   getAllDiscounts,
   getDiscount,
   updateDiscount
-} from '../../controllers/book/priceDiscount.controller';
+} from '../../controllers/book/priceDiscount.controller.js';
 
 export const priceDiscountRouter = express.Router();
 

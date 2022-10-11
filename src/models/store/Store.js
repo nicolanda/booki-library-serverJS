@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 
-export const Book = sequelize.define('Booki',
+export const Store = sequelize.define('Store',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,38 +16,34 @@ export const Book = sequelize.define('Booki',
         notEmpty: true
       }
     },
-    isbn: {
+    address: {
       type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    editorial: {
+    phone: {
       type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    imgUrl: {
+    email: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique: true,
       validate: {
+        notNull: true,
         notEmpty: true,
-        isUrl: true
+        isEmail: true
       }
     },
-    details: {
-      type: DataTypes.STRING(255),
+    nit: {
+      type: DataTypes.STRING(50),
       allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
-    language: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
+      unique: true,
       validate: {
         notEmpty: true
       }
