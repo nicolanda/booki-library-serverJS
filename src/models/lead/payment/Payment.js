@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
+import { PaymentType } from './PaymentType.js';
+import { PaymentCountry } from './PaymentCountry.js';
 
 export const Payment = sequelize.define(
   'Payment',
@@ -89,3 +91,21 @@ export const Payment = sequelize.define(
   },
   { timestamps: true }
 );
+
+// relations
+
+PaymentType.hasMany(Payment, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+
+Payment.belongsTo(PaymentType);
+
+PaymentCountry.hasMany(Payment, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+
+Payment.belongsTo(PaymentCountry);

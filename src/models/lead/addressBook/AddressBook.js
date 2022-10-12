@@ -1,5 +1,7 @@
 import { sequelize } from '../../../config/config.js';
 import { DataTypes } from 'sequelize';
+import { City } from './City.js';
+import { House } from './House.js';
 
 export const AddresBook = sequelize.define(
   'AddressBook',
@@ -27,3 +29,20 @@ export const AddresBook = sequelize.define(
   },
   { timestamps: true }
 );
+
+// relations
+
+City.hasMany(AddresBook, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+AddresBook.belongsTo(City);
+
+House.hasMany(AddresBook, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+
+AddresBook.belongsTo(House);

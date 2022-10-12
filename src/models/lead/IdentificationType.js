@@ -1,5 +1,5 @@
-import { DataTypes } from 'sequelize'
-import { sequelize } from '../../config/config.js'
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../../config/config.js';
 
 export const IdentificationType = sequelize.define(
   'IdentificationType',
@@ -19,4 +19,4 @@ export const IdentificationType = sequelize.define(
   {
     timestamps: false
   }
-)
+);

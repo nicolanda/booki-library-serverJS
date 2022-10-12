@@ -16,4 +16,4 @@ export const House = sequelize.define('House', {
       isAlpha: true
     }
   }
-}, { timestamps: true });
+}, { timestamps: false });

@@ -1,5 +1,9 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
+import { Category } from './Category.js';
+import { Authors } from './Author.js';
+import { PriceDiscount } from './PriceDiscount.js';
+import { PriceTax } from './PriceTax.js';
 
 export const Book = sequelize.define('Booki',
   {
@@ -53,3 +57,39 @@ export const Book = sequelize.define('Booki',
       }
     }
   }, { timestamps: true });
+
+// relations
+
+Book.belongsToMany(Category, {
+  through: 'BookCategory',
+  timestamps: false
+});
+
+Category.belongsToMany(Book, {
+  through: 'BookCategory',
+  timestamps: false
+});
+
+Book.belongsToMany(Authors, {
+  through: 'BookAuthor',
+  timestamps: false
+});
+
+Authors.belongsToMany(Book, {
+  through: 'BookAuthor',
+  timestamps: false
+});
+
+PriceDiscount.hasMany(Book, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Book.belongsTo(PriceDiscount);
+
+PriceTax.hasMany(Book, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Book.belongsTo(PriceTax);

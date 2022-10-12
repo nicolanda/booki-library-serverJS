@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
+import { Department } from './Department.js';
 
 export const City = sequelize.define(
   'City',
@@ -21,3 +22,11 @@ export const City = sequelize.define(
   },
   { timestamps: false }
 );
+
+// relations
+Department.hasMany(City, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+City.belongsTo(Department);

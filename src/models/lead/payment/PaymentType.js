@@ -15,4 +15,4 @@ export const PaymentType = sequelize.define('PaymentType', {
       isEmpty: false
     }
   }
-}, { timestamp: false });
+}, { timestamps: false });

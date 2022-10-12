@@ -1,5 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
+import { AddresBook } from './addressBook/AddressBook.js';
+import { Payment } from './payment/Payment.js';
+import { IdentificationType } from './IdentificationType.js';
 
 export const Lead = sequelize.define('Lead',
   {
@@ -63,3 +66,26 @@ export const Lead = sequelize.define('Lead',
     timestamps: true
   }
 );
+
+// relations
+
+Lead.hasMany(Payment, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Payment.belongsTo(Lead);
+
+Lead.hasMany(AddresBook, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+AddresBook.belongsTo(Lead);
+
+IdentificationType.hasMany(Lead, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Lead.belongsTo(IdentificationType);

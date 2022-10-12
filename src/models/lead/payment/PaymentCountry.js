@@ -15,4 +15,4 @@ export const PaymentCountry = sequelize.define('PaymentCountry', {
       notEmpty: true
     }
   }
-}, { timestamp: false });
+}, { timestamps: false });
