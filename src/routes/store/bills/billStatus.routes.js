@@ -5,7 +5,7 @@ import {
   getAllBillStatus,
   getBillStatus,
   updateBillStatus
-} from '../../../controllers/store/bill/billStatus.controller';
+} from '../../../controllers/store/bill/billStatus.controller.js';
 
 export const billStatusRouter = express.Router();
 

@@ -5,7 +5,7 @@ import {
   getAllStore,
   getStore,
   updateStore
-} from '../../controllers/store/store.controller';
+} from '../../controllers/store/store.controller.js';
 
 export const storeRouter = express.Router();
 
