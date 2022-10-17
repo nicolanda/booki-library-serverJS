@@ -4,7 +4,7 @@ import { AddresBook } from './addressBook/AddressBook.js';
 import { Payment } from './payment/Payment.js';
 import { IdentificationType } from './IdentificationType.js';
 
-export const Lead = sequelize.define('Lead',
+export const Lead = sequelize.define('lead',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -63,6 +63,7 @@ export const Lead = sequelize.define('Lead',
     }
   },
   {
+    freezeTableName: true,
     timestamps: true
   }
 );

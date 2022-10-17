@@ -3,7 +3,7 @@ import { sequelize } from '../../config/config.js';
 import { Bill } from './bill/Bill.js';
 import { Book } from '../book/Book.js';
 
-export const Store = sequelize.define('Store',
+export const Store = sequelize.define('store',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -50,7 +50,10 @@ export const Store = sequelize.define('Store',
         notEmpty: true
       }
     }
-  }, { timestamps: true });
+  }, {
+    freezeTableName: true,
+    timestamps: true
+  });
 
 // relations
 

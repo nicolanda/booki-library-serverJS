@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 
 export const IdentificationType = sequelize.define(
-  'IdentificationType',
+  'identification_type',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -17,6 +17,7 @@ export const IdentificationType = sequelize.define(
     }
   },
   {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
   }
 );

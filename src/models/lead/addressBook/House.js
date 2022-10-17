@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
 
-export const House = sequelize.define('House', {
+export const House = sequelize.define('house', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -16,4 +16,7 @@ export const House = sequelize.define('House', {
       isAlpha: true
     }
   }
-}, { timestamps: false });
+}, {
+  freezeTableName: true,
+  timestamps: false
+});

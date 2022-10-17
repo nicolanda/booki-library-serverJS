@@ -4,7 +4,7 @@ import { PaymentType } from './PaymentType.js';
 import { PaymentCountry } from './PaymentCountry.js';
 
 export const Payment = sequelize.define(
-  'Payment',
+  'payment',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -89,7 +89,10 @@ export const Payment = sequelize.define(
       defaultValue: false
     }
   },
-  { timestamps: true }
+  {
+    freezeTableName: true,
+    timestamps: true
+  }
 );
 
 // relations

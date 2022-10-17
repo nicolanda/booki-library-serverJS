@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
 
-export const PaymentType = sequelize.define('PaymentType', {
+export const PaymentType = sequelize.define('payment_type', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -15,4 +15,7 @@ export const PaymentType = sequelize.define('PaymentType', {
       isEmpty: false
     }
   }
-}, { timestamps: false });
+}, {
+  timestamps: false,
+  freezeTableName: true
+});

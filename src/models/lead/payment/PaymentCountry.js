@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
 
-export const PaymentCountry = sequelize.define('PaymentCountry', {
+export const PaymentCountry = sequelize.define('payment_country', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -15,4 +15,7 @@ export const PaymentCountry = sequelize.define('PaymentCountry', {
       notEmpty: true
     }
   }
-}, { timestamps: false });
+}, {
+  freezeTableName: true,
+  timestamps: false
+});

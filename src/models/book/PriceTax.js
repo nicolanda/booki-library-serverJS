@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 
-export const PriceTax = sequelize.define('priceTax', {
+export const PriceTax = sequelize.define('price_tax', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -22,4 +22,7 @@ export const PriceTax = sequelize.define('priceTax', {
       notEmpty: true
     }
   }
-}, { timestamps: false });
+}, {
+  freezeTableName: true,
+  timestamps: false
+});

@@ -4,7 +4,7 @@ import { Lead } from '../../lead/Lead.js';
 import { BillDelivery } from './BillDelivery.js';
 import { BillStatus } from './BillStatus.js';
 
-export const Bill = sequelize.define('Bill',
+export const Bill = sequelize.define('bill',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -30,7 +30,10 @@ export const Bill = sequelize.define('Bill',
         isDecimal: true
       }
     }
-  }, { timestamps: true });
+  }, {
+    freezeTableName: true,
+    timestamps: true
+  });
 
 // relations
 

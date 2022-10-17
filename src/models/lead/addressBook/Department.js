@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
 
 export const Department = sequelize.define(
-  'Departments',
+  'department',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -20,5 +20,8 @@ export const Department = sequelize.define(
       }
     }
   },
-  { timestamps: false }
+  {
+    freezeTableName: true,
+    timestamps: false
+  }
 );

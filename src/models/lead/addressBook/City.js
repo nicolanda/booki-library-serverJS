@@ -3,7 +3,7 @@ import { sequelize } from '../../../config/config.js';
 import { Department } from './Department.js';
 
 export const City = sequelize.define(
-  'City',
+  'city',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -20,7 +20,10 @@ export const City = sequelize.define(
       }
     }
   },
-  { timestamps: false }
+  {
+    freezeTableName: true,
+    timestamps: false
+  }
 );
 
 // relations

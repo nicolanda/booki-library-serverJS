@@ -5,7 +5,7 @@ import { Authors } from './Author.js';
 import { PriceDiscount } from './PriceDiscount.js';
 import { PriceTax } from './PriceTax.js';
 
-export const Book = sequelize.define('Booki',
+export const Book = sequelize.define('book',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -56,7 +56,10 @@ export const Book = sequelize.define('Booki',
         notEmpty: true
       }
     }
-  }, { timestamps: true });
+  }, {
+    freezeTableName: true,
+    timestamps: true
+  });
 
 // relations
 

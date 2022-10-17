@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 
 export const PriceDiscount = sequelize.define(
-  'PriceDiscount',
+  'price_discount',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -31,5 +31,8 @@ export const PriceDiscount = sequelize.define(
       defaultValue: false
     }
   },
-  { timestamps: false }
+  {
+    freezeTableName: true,
+    timestamps: false
+  }
 );

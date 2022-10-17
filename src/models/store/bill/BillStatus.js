@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
 
-export const BillStatus = sequelize.define('BillStatus', {
+export const BillStatus = sequelize.define('bill_status', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -15,4 +15,7 @@ export const BillStatus = sequelize.define('BillStatus', {
       notEmpty: true
     }
   }
-}, { timestamps: false });
+}, {
+  freezeTableName: true,
+  timestamps: false
+});

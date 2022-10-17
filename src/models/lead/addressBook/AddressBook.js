@@ -4,7 +4,7 @@ import { City } from './City.js';
 import { House } from './House.js';
 
 export const AddresBook = sequelize.define(
-  'AddressBook',
+  'adress_book',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -27,7 +27,10 @@ export const AddresBook = sequelize.define(
       }
     }
   },
-  { timestamps: true }
+  {
+    freezeTableName: true,
+    timestamps: true
+  }
 );
 
 // relations

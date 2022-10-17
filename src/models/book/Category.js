@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 
-export const Category = sequelize.define('Category', {
+export const Category = sequelize.define('category', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -16,4 +16,7 @@ export const Category = sequelize.define('Category', {
       notEmpty: true
     }
   }
-}, { timestamps: false });
+}, {
+  freezeTableName: true,
+  timestamps: false
+});

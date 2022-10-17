@@ -22,8 +22,8 @@ export const getIdentification = async (req, res) => {
 
 export const createIdentification = async (req, res) => {
   try {
-    const { id, name } = req.body;
-    const newIdType = await IdentificationType.create({ id, name });
+    const { name } = req.body;
+    const newIdType = await IdentificationType.create({ name });
     res.json(newIdType);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -54,3 +54,10 @@ export const deleteIdentification = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+/*
+IdentificationType.bulkCreate([
+  { name: 'Cédula de ciudadanía' },
+  { name: 'Cédula de extranjería' },
+  { name: 'Pasaporte' }
+]);
+*/

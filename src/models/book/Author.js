@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 
 export const Authors = sequelize.define(
-  'Authors',
+  'authors',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -41,5 +41,8 @@ export const Authors = sequelize.define(
       }
     }
   },
-  { timestamps: false }
+  {
+    freezeTableName: true,
+    timestamps: false
+  }
 );

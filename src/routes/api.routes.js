@@ -27,7 +27,7 @@ apiRouter.use('/storeWorkers', storeWorkersRouter);
 
 // billRoutes
 apiRouter.use('/bill', billsRouter);
-apiRouter.use('./billDelivery', billDeliveryRouter);
+apiRouter.use('/billDelivery', billDeliveryRouter);
 apiRouter.use('/billStatus', billStatusRouter);
 
 // bookRoutes
