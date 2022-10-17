@@ -1,4 +1,5 @@
 import { IdentificationType } from '../../models/lead/IdentificationType.js';
+import { Op } from 'sequelize';
 
 export const getAllIdentifications = async (req, res) => {
   try {
@@ -25,6 +26,14 @@ export const createIdentification = async (req, res) => {
     const { name } = req.body;
     const newIdType = await IdentificationType.create({ name });
     res.json(newIdType);
+
+    // const defaultIdType = await IdentificationType.bulkCreate([
+    //   { name: 'Cédula de ciudadanía' },
+    //   { name: 'Cédula de extranjería' },
+    //   { name: 'Pasaporte' }
+    // ]);
+
+    // res.json(defaultIdType);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -54,10 +63,29 @@ export const deleteIdentification = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-/*
+
+const defValues = [
+  'Cédula de ciudadanía',
+  'Cédula de extranjería',
+  'Pasaporte',
+  'Tarjeta de identidad',
+  'NIT'
+];
+
+IdentificationType.destroy({
+  where: {
+    name: { [Op.or]: defValues }
+  }
+});
+
 IdentificationType.bulkCreate([
-  { name: 'Cédula de ciudadanía' },
-  { name: 'Cédula de extranjería' },
-  { name: 'Pasaporte' }
-]);
-*/
+  { name: defValues[0] },
+  { name: defValues[1] },
+  { name: defValues[2] },
+  { name: defValues[3] },
+  { name: defValues[4] }
+]).then(() => {
+  console.log('Default identification types created');
+}).catch((error) => {
+  console.log(error);
+});
