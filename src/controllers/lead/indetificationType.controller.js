@@ -1,5 +1,6 @@
 import { IdentificationType } from '../../models/lead/IdentificationType.js';
-import { Op } from 'sequelize';
+import { documentTypeValues } from '../../services/rawData.js';
+// import { Op } from 'sequelize';
 
 export const getAllIdentifications = async (req, res) => {
   try {
@@ -26,14 +27,6 @@ export const createIdentification = async (req, res) => {
     const { name } = req.body;
     const newIdType = await IdentificationType.create({ name });
     res.json(newIdType);
-
-    // const defaultIdType = await IdentificationType.bulkCreate([
-    //   { name: 'Cédula de ciudadanía' },
-    //   { name: 'Cédula de extranjería' },
-    //   { name: 'Pasaporte' }
-    // ]);
-
-    // res.json(defaultIdType);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -63,7 +56,7 @@ export const deleteIdentification = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
+/*
 const defValues = [
   'Cédula de ciudadanía',
   'Cédula de extranjería',
@@ -89,3 +82,27 @@ IdentificationType.bulkCreate([
 }).catch((error) => {
   console.log(error);
 });
+*/
+
+export const defTypesValues = async () => {
+  const idType = await IdentificationType.findAll();
+  if (idType.length === 0) {
+    documentTypeValues.forEach((value) => {
+      IdentificationType.findOrCreate({ where: { name: value.name } });
+    });
+  }
+};
+
+// defValues();
+// Path: src/models/lead/IdentificationType.js
+
+// const defValues = async () => {
+//   const idType = await IdentificationType.findAll();
+//   if (idType.length === 0) {
+//     documentTypeValues.forEach((value) => {
+//       IdentificationType.findOrCreate({ name: value.name });
+//     });
+//   }
+// };
+
+// defValues();

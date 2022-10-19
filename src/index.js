@@ -4,11 +4,13 @@ import { PORT, sequelize } from './config/config.js';
 // import { Lead } from './models/lead/Lead.js';
 // !import tables
 // import './models/IdentificationType.js'
+import { defTypesValues } from './controllers/lead/indetificationType.controller.js';
 
 const main = async () => {
   try {
     // await sequelize.authenticate()
-    await sequelize.sync();
+    await sequelize.sync({ force: true });
+    defTypesValues();
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
