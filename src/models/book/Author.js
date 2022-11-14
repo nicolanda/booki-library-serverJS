@@ -17,13 +17,6 @@ export const Authors = sequelize.define(
         notEmpty: true
       }
     },
-    lastName: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
     bornYear: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -33,7 +26,7 @@ export const Authors = sequelize.define(
         len: [4]
       }
     },
-    nationationality: {
+    country: {
       type: DataTypes.STRING(50),
       allowNull: false,
       validate: {

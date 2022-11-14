@@ -22,14 +22,31 @@ export const getBook = async (req, res) => {
 
 export const createBook = async (req, res) => {
   try {
-    const { name, isbn, editorial, imgUrl, details, language } = req.body;
-    const newBook = await Book.create({
+    const {
       name,
+      title,
       isbn,
       editorial,
       imgUrl,
       details,
-      language
+      language,
+      price,
+      editon,
+      pages,
+      format
+    } = req.body;
+    const newBook = await Book.create({
+      name,
+      title,
+      isbn,
+      editorial,
+      imgUrl,
+      details,
+      language,
+      price,
+      editon,
+      pages,
+      format
     });
     res.json(newBook);
   } catch (error) {

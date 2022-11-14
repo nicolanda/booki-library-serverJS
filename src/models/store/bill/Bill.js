@@ -1,6 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
+import { Book } from '../../book/Book.js';
 import { Lead } from '../../lead/Lead.js';
+import { Payment } from '../../lead/payment/Payment.js';
 import { BillDelivery } from './BillDelivery.js';
 import { BillStatus } from './BillStatus.js';
 
@@ -57,3 +59,23 @@ BillStatus.hasMany(Bill, {
   }
 });
 Bill.belongsTo(BillStatus);
+
+Bill.belongsToMany(Book, {
+  through: 'bill_book',
+  allowNull: false,
+  timestamps: false
+});
+
+Book.belongsToMany(Bill, {
+  through: 'bill_book',
+  allowNull: false,
+  timestamps: false
+});
+
+Payment.hasMany(Bill, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+
+Bill.belongsTo(Payment);

@@ -13,7 +13,7 @@ export const Book = sequelize.define('book',
       allowNull: false,
       autoIncrement: true
     },
-    name: {
+    title: {
       type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
@@ -43,13 +43,43 @@ export const Book = sequelize.define('book',
       }
     },
     details: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     language: {
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      }
+    },
+    edition: {
+      type: DataTypes.STRING(25),
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
+    pages: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isNumeric: true
+      }
+    },
+    format: {
       type: DataTypes.STRING(10),
       allowNull: false,
       validate: {
@@ -64,28 +94,32 @@ export const Book = sequelize.define('book',
 // relations
 
 Book.belongsToMany(Category, {
-  through: 'BookCategory',
+  through: 'book_category',
+  allowNull: false,
   timestamps: false
 });
 
 Category.belongsToMany(Book, {
-  through: 'BookCategory',
+  through: 'book_category',
+  allowNull: false,
   timestamps: false
 });
 
 Book.belongsToMany(Authors, {
-  through: 'BookAuthor',
+  through: 'book_author',
+  allowNull: false,
   timestamps: false
 });
 
 Authors.belongsToMany(Book, {
-  through: 'BookAuthor',
+  through: 'book_author',
+  allowNull: false,
   timestamps: false
 });
 
 PriceDiscount.hasMany(Book, {
   foreignKey: {
-    allowNull: false
+    allowNull: true
   }
 });
 Book.belongsTo(PriceDiscount);

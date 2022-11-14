@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 import { AddresBook } from './addressBook/AddressBook.js';
@@ -64,7 +65,15 @@ export const Lead = sequelize.define('lead',
   },
   {
     freezeTableName: true,
-    timestamps: true
+    timestamps: true,
+    hooks: {
+      beforeCreate: async (lead) => {
+        lead.password = await bcrypt.hash(lead.password, 10);
+      },
+      beforeUpdate: async (lead) => {
+        lead.password = await bcrypt.hash(lead.password, 10);
+      }
+    }
   }
 );
 

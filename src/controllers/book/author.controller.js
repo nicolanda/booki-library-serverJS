@@ -24,15 +24,13 @@ export const createAuthor = async (req, res) => {
   try {
     const {
       name,
-      lastName,
       bornYear,
-      nationationality
+      country
     } = req.body;
     const newAuthor = await Authors.create({
       name,
-      lastName,
       bornYear,
-      nationationality
+      country
     });
     res.json(newAuthor);
   } catch (error) {
