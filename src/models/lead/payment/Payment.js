@@ -39,14 +39,6 @@ export const Payment = sequelize.define(
         len: [4]
       }
     },
-    cvc: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [3]
-      }
-    },
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,

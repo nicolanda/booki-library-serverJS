@@ -2,9 +2,9 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../../../config/config.js';
 import { Book } from '../../book/Book.js';
 import { Lead } from '../../lead/Lead.js';
-import { Payment } from '../../lead/payment/Payment.js';
 import { BillDelivery } from './BillDelivery.js';
 import { BillStatus } from './BillStatus.js';
+// import { Payment } from '../../lead/payment/Payment.js';
 
 export const Bill = sequelize.define('bill',
   {
@@ -72,10 +72,10 @@ Book.belongsToMany(Bill, {
   timestamps: false
 });
 
-Payment.hasMany(Bill, {
-  foreignKey: {
-    allowNull: false
-  }
-});
+// Payment.hasMany(Bill, {
+//   foreignKey: {
+//     allowNull: false
+//   }
+// });
 
-Bill.belongsTo(Payment);
+// Bill.belongsTo(Payment);

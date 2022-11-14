@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../../config/config.js';
 import { Bill } from './bill/Bill.js';
-import { Book } from '../book/Book.js';
+// import { Book } from '../book/Book.js';
 
 export const Store = sequelize.define('store',
   {
@@ -64,9 +64,9 @@ Store.hasMany(Bill, {
 });
 Bill.belongsTo(Store);
 
-Store.hasMany(Book, {
-  foreignKey: {
-    allowNull: false
-  }
-});
-Book.belongsTo(Store);
+// Store.hasMany(Book, {
+//   foreignKey: {
+//     allowNull: false
+//   }
+// });
+// Book.belongsTo(Store);
