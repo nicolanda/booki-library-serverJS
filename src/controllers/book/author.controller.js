@@ -22,16 +22,21 @@ export const getAuthor = async (req, res) => {
 
 export const createAuthor = async (req, res) => {
   try {
-    const {
-      name,
-      bornYear,
-      country
-    } = req.body;
-    const newAuthor = await Authors.create({
-      name,
-      bornYear,
-      country
-    });
+    // const {
+    //   name,
+    //   bornYear,
+    //   country
+    // } = req.body;
+    // const newAuthor = await Authors.create({
+    //   name,
+    //   bornYear,
+    //   country
+    // });
+
+    const [{ name, bornYear, country }] = req.body;
+    const newAuthor = await Authors.bulkCreate([
+      
+    ]);
     res.json(newAuthor);
   } catch (error) {
     res.status(500).json({ message: error.message });
