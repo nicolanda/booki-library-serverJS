@@ -10,8 +10,8 @@ import {
 export const priceDiscountRouter = express.Router();
 
 priceDiscountRouter
-  .get('./', getAllDiscounts)
-  .get('./:id', getDiscount)
-  .post('./', createDiscount)
-  .put('./:id', updateDiscount)
-  .delete('./:id', deleteDiscount);
+  .get('/', getAllDiscounts)
+  .get('/:id', getDiscount)
+  .post('/', createDiscount)
+  .put('/:id', updateDiscount)
+  .delete('/:id', deleteDiscount);

@@ -13,22 +13,18 @@ export const PriceDiscount = sequelize.define(
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique: true,
       validate: {
         notEmpty: true
       }
     },
     value: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.DECIMAL(2, 2),
       allowNull: false,
       validate: {
         notEmpty: true,
         isDecimal: true
       }
-    },
-    active: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false
     }
   },
   {

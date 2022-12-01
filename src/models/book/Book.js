@@ -10,7 +10,6 @@ export const Book = sequelize.define('book',
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      allowNull: false,
       autoIncrement: true
     },
     title: {
@@ -35,7 +34,7 @@ export const Book = sequelize.define('book',
       }
     },
     imgUrl: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(250),
       allowNull: false,
       validate: {
         notEmpty: true,
@@ -95,25 +94,25 @@ export const Book = sequelize.define('book',
 
 Book.belongsToMany(Category, {
   through: 'book_category',
-  allowNull: false,
+  allowNull: true,
   timestamps: false
 });
 
 Category.belongsToMany(Book, {
   through: 'book_category',
-  allowNull: false,
+  allowNull: true,
   timestamps: false
 });
 
 Book.belongsToMany(Authors, {
   through: 'book_author',
-  allowNull: false,
+  allowNull: true,
   timestamps: false
 });
 
 Authors.belongsToMany(Book, {
   through: 'book_author',
-  allowNull: false,
+  allowNull: true,
   timestamps: false
 });
 
@@ -126,7 +125,7 @@ Book.belongsTo(PriceDiscount);
 
 PriceTax.hasMany(Book, {
   foreignKey: {
-    allowNull: false
+    allowNull: true
   }
 });
 Book.belongsTo(PriceTax);

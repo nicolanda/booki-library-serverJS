@@ -13,6 +13,7 @@ export const Authors = sequelize.define(
     name: {
       type: DataTypes.STRING(50),
       allowNull: false,
+      unique: true,
       validate: {
         notEmpty: true
       }

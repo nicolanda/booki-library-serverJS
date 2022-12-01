@@ -2,8 +2,8 @@ import { PriceDiscount } from '../../models/book/PriceDiscount.js';
 
 export const getAllDiscounts = async (req, res) => {
   try {
-    const discounts = await PriceDiscount.findAll();
-    res.json(discounts);
+    const priceDiscount = await PriceDiscount.findAll();
+    res.json(priceDiscount);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

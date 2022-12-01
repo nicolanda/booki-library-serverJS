@@ -35,7 +35,7 @@ apiRouter.use('/book', bookRouter);
 apiRouter.use('/category', categoryRouter);
 apiRouter.use('/author', authorRouter);
 apiRouter.use('/priceDiscount', priceDiscountRouter);
-apiRouter.use('/prieTax', priceTaxRouter);
+apiRouter.use('/priceTax', priceTaxRouter);
 
 // leadRoutes
 apiRouter.use('/lead', leadRouter);
