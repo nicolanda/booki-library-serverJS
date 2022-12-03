@@ -9,12 +9,19 @@ export const getAllBooks = async (req, res) => {
   try {
     const books = await Book.findAll({
       include: [
-        { model: Category },
-        { model: Authors },
+        {
+          model: Category,
+          through: { attributes: [] }
+        },
+        {
+          model: Authors,
+          through: { attributes: [] }
+        },
         { model: PriceDiscount },
         { model: PriceTax }
       ]
     });
+    // console.log(books);
     res.json(books);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -24,7 +31,14 @@ export const getAllBooks = async (req, res) => {
 export const getBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const book = await Book.findByPk(id);
+    const book = await Book.findByPk(id, {
+      include: [
+        { model: Category },
+        { model: Authors },
+        { model: PriceDiscount },
+        { model: PriceTax }
+      ]
+    });
     if (!book) return res.status(404).json({ message: 'Book not found' });
     res.json(book);
   } catch (error) {
@@ -66,7 +80,6 @@ export const createBook = async (req, res) => {
       }]
     });
 
-    console.log(categories);
     const newBook = await Book.create(
       {
         title,
@@ -108,9 +121,27 @@ export const createBook = async (req, res) => {
 export const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
+    const { categoryIds } = req.body;
     const book = await Book.findByPk(id);
     if (!book) return res.status(404).json({ message: 'Book not found' });
+
+    const categories = book.getCategories();
+    categories.forEach(category => {
+      category.bookCategory.destroy();
+    });
+
+    await Category.findAll({
+      where: [{
+        id: {
+          [Op.in]: categoryIds
+        }
+      }]
+    });
+
+    book.addCategories(categories);
+
     book.set(req.body);
+
     await book.save();
     return res.json(book);
   } catch (error) {
