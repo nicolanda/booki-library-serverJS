@@ -12,6 +12,16 @@ export const AddresBook = sequelize.define(
       allowNull: false,
       autoIncrement: true
     },
+    email: {
+      type: DataTypes.STRING(250),
+      allowNull: false,
+      unique: true,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+        isEmail: true
+      }
+    },
     postaCode: {
       type: DataTypes.INTEGER,
       allowNull: true,

@@ -12,6 +12,15 @@ export const Payment = sequelize.define(
       allowNull: false,
       autoIncrement: true
     },
+    email: {
+      type: DataTypes.STRING(250),
+      allowNull: false,
+      validate: {
+        notNull: true,
+        notEmpty: true,
+        isEmail: true
+      }
+    },
     card_number: {
       type: DataTypes.INTEGER,
       allowNull: false,

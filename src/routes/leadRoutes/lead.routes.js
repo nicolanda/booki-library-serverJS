@@ -3,15 +3,18 @@ import {
   createLead,
   deleteLead,
   getAllLeads,
+  getEmailLead,
   getLead,
   updateLead
 } from '../../controllers/lead/lead.controller.js';
+import { saveEmail, verifyToken } from '../../middleware/userAuth.js';
 
 export const leadRouter = express.Router();
 
 leadRouter
-  .get('/', getAllLeads)
+  .get('/', verifyToken, getAllLeads)
   .get('/:id', getLead)
-  .post('/', createLead)
+  .get('/:email', getEmailLead)
+  .post('/', saveEmail, createLead)
   .put('/:id', updateLead)
   .delete('/:id', deleteLead);

@@ -65,46 +65,48 @@ export const createBook = async (req, res) => {
   } = req.body;
   try {
     const categories = await Category.findAll({
-      where: [{
-        id: {
-          [Op.in]: categoryIds
+      where: [
+        {
+          id: {
+            [Op.in]: categoryIds
+          }
         }
-      }]
+      ]
     });
 
     const authors = await Authors.findAll({
-      where: [{
-        id: {
-          [Op.in]: authorIds
+      where: [
+        {
+          id: {
+            [Op.in]: authorIds
+          }
         }
-      }]
+      ]
     });
 
-    const newBook = await Book.create(
-      {
-        title,
-        isbn,
-        price,
-        imgUrl,
-        details,
-        language,
-        edition,
-        editorial,
-        pages,
-        format,
-        priceTaxId,
-        priceDiscountId
-        // Authors: [{
-        //   name: req.body.name,
-        //   bornYear: req.body.bornYear,
-        //   country: req.body.country
-        // }],
-        // PriceDiscount: [{
-        //   discount: req.body.discount,
-        //   value: req.body.value
-        // }],
-      }
-    );
+    const newBook = await Book.create({
+      title,
+      isbn,
+      price,
+      imgUrl,
+      details,
+      language,
+      edition,
+      editorial,
+      pages,
+      format,
+      priceTaxId,
+      priceDiscountId
+      // Authors: [{
+      //   name: req.body.name,
+      //   bornYear: req.body.bornYear,
+      //   country: req.body.country
+      // }],
+      // PriceDiscount: [{
+      //   discount: req.body.discount,
+      //   value: req.body.value
+      // }],
+    });
     newBook.addCategories(categories);
     newBook.addAuthors(authors);
     // newBook.forEach(element => {
@@ -118,29 +120,65 @@ export const createBook = async (req, res) => {
   }
 };
 
+const getByModel = async (model, modelIds) => {
+  return await model.findAll({
+    where: [
+      {
+        id: {
+          [Op.in]: modelIds
+        }
+      }
+    ]
+  });
+};
+
+const getBookParams = ({
+  title,
+  isbn,
+  price,
+  imgUrl,
+  details,
+  language,
+  edition,
+  editorial,
+  pages,
+  format,
+  priceTaxId,
+  priceDiscountId
+}) => {
+  return {
+    title,
+    isbn,
+    price,
+    imgUrl,
+    details,
+    language,
+    edition,
+    editorial,
+    pages,
+    format,
+    priceTaxId,
+    priceDiscountId
+  };
+};
+
 export const updateBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const { categoryIds } = req.body;
+    const { categoryIds, authorIds } = req.body;
+
     const book = await Book.findByPk(id);
     if (!book) return res.status(404).json({ message: 'Book not found' });
 
-    const categories = book.getCategories();
-    categories.forEach(category => {
-      category.bookCategory.destroy();
-    });
+    book.removeCategories();
+    book.removeAuthors();
 
-    await Category.findAll({
-      where: [{
-        id: {
-          [Op.in]: categoryIds
-        }
-      }]
-    });
+    const newCategories = await getByModel(Category, categoryIds);
+    const newAuthors = await getByModel(Authors, authorIds);
 
-    book.addCategories(categories);
-
-    book.set(req.body);
+    book.set(getBookParams(req.body));
+    book.setCategories(newCategories);
+    book.setAuthors(newAuthors);
 
     await book.save();
     return res.json(book);

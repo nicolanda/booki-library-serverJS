@@ -9,7 +9,7 @@ import { PORT, sequelize } from './config/config.js';
 const main = async () => {
   try {
     // await sequelize.authenticate()
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
     // defTypesValues();
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);

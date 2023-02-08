@@ -1,5 +1,5 @@
 import { IdentificationType } from '../../models/lead/IdentificationType.js';
-import { documentTypeValues } from '../../services/rawData.js';
+// import { documentTypeValues } from '../../services/rawData.js';
 // import { Op } from 'sequelize';
 
 export const getAllIdentifications = async (req, res) => {
@@ -84,14 +84,17 @@ IdentificationType.bulkCreate([
 });
 */
 
-export const defTypesValues = async () => {
-  const idType = await IdentificationType.findAll();
-  if (idType.length === 0) {
-    documentTypeValues.forEach((value) => {
-      IdentificationType.findOrCreate({ where: { name: value.name } });
-    });
-  }
-};
+/*
+! import raw data
+*/
+// export const defTypesValues = async () => {
+//   const idType = await IdentificationType.findAll();
+//   if (idType.length === 0) {
+//     documentTypeValues.forEach((value) => {
+//       IdentificationType.findOrCreate({ where: { name: value.name } });
+//     });
+//   }
+// };
 
 // defValues();
 // Path: src/models/lead/IdentificationType.js

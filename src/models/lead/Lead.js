@@ -17,14 +17,14 @@ export const Lead = sequelize.define('lead',
       }
     },
     name: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
     email: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(250),
       allowNull: false,
       unique: true,
       validate: {
@@ -34,7 +34,7 @@ export const Lead = sequelize.define('lead',
       }
     },
     password: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notNull: true,
@@ -54,12 +54,11 @@ export const Lead = sequelize.define('lead',
         isNumeric: true
       }
     },
-    token: {
-      type: DataTypes.STRING(50)
-    },
+    // token: {
+    //   type: DataTypes.STRING(50)
+    // },
     confirmed: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
     }
   },
@@ -79,19 +78,11 @@ export const Lead = sequelize.define('lead',
 
 // relations
 
-Lead.hasMany(Payment, {
-  foreignKey: {
-    allowNull: false
-  }
-});
-Payment.belongsTo(Lead);
+Lead.belongsTo(Payment);
+Payment.hasMany(Lead);
 
-Lead.hasMany(AddresBook, {
-  foreignKey: {
-    allowNull: false
-  }
-});
-AddresBook.belongsTo(Lead);
+Lead.belongsTo(AddresBook);
+AddresBook.hasMany(Lead);
 
 IdentificationType.hasMany(Lead, {
   foreignKey: {

@@ -10,6 +10,7 @@ import { departmentRouter } from './leadRoutes/addresBook/department.routes.js';
 import { houseTypeRouter } from './leadRoutes/addresBook/house.routes.js';
 import { identificationTypeRouter } from './leadRoutes/identificationType.routes.js';
 import { leadRouter } from './leadRoutes/lead.routes.js';
+import { loginRoute } from './leadRoutes/login.routes.js';
 import { paymentRouter } from './leadRoutes/payment/payment.routes.js';
 import { paymentCountryRouter } from './leadRoutes/payment/paymentCountry.routes.js';
 import { paymentTypeRouter } from './leadRoutes/payment/paymentType.routes.js';
@@ -39,6 +40,7 @@ apiRouter.use('/priceTax', priceTaxRouter);
 
 // leadRoutes
 apiRouter.use('/lead', leadRouter);
+apiRouter.use('/login', loginRoute);
 apiRouter.use('/identificationType', identificationTypeRouter);
 
 // addressBookRoutes

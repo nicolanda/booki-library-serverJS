@@ -25,3 +25,5 @@ export const sequelize = new Sequelize(
     }
   }
 );
+
+export const Auth = process.env.SECRET;
